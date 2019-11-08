@@ -1,15 +1,12 @@
 import numpy as np
-from bqplot import pyplot as plt
 import time
 
+
 class metric(object):
-    def __init__(self, description='Metric', color='k', plotno=1):
+    def __init__(self, description='Metric'):
         self.x = np.empty((100,))
         self.y = np.empty((100,))
         self.i = 0
-        self.plotno = plotno
-        self.fig = plt.figure(self.plotno, title=description)
-        self.color = color
         self.last = None
 
     def __lshift__(self, other):
@@ -35,11 +32,3 @@ class metric(object):
             return self.y[self.i - 1] == np.nanmax(self.y[:self.i-1])
         else:
             return True
-
-    def plot(self):
-        plt.figure(self.plotno)
-        plt.plot(self.x[:self.i], self.y[:self.i], '{}-'.format(self.color),
-                 figure=self.fig)
-        if self.i <= 1:
-            plt.show()
-        return self
