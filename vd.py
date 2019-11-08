@@ -16,7 +16,7 @@ class vd(object):
         """Plot the current confusion matrix."""
         size = cm.shape[0]
         plt.imshow(cm, cmap='cividis', extent=[0, size, 0, size])
-        self.visdom.matplot(plt.gcf())
+        self.visdom.matplot(plt.gcf(), win='confusion_matrix')
 
     def plot_metric(self, metric_name, metric, step=None):
         """."""
